@@ -42,13 +42,13 @@ jobs:
 
   deploy:
     needs: build-analyze-scan
-    runs-on: [self-hosted]
+    runs-on: [aws-netflix]
     steps:
-      - name: Pull docker images
+      - name: Pull the docker images
         run: docker pull kennygee009/netfix:latest
       - name: Trivy image scan
         run: trivy image kennygee009/netfix:latest
       - name: Run the container netflix
-        run: docker run -d -p 8081:81 --name netflix kennygee009/netfix:latest  
+        run: docker run -d --name netflix -p 8081:80 kennygee009/netfix:latest  
          
       
