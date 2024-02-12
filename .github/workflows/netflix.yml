@@ -34,7 +34,7 @@ jobs:
         run: |
            #run commands to build and push docker images
            docker build --build-arg TMDB_V3_API_KEY=8a07c2a77adce714dd319fe4ef8ffd61 -t netflix .
-           docker tag kennygee007/netfix:latest
+           docker tag netflix kennygee007/netfix:latest
            docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
            docker push kennygee007/netfix:latest
         env:
