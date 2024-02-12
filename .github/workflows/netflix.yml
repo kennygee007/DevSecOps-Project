@@ -40,5 +40,15 @@ jobs:
         env:
           DOCKER_CLI_ACI: 1 
 
+  deploy:
+    needs: build-analyze-scan
+    runs-on: [aws-netflix]
+    steps:
+      - name: Pull docker images
+        run: docker pull kennygee009/netfix:latest
+      - name: Trivy image scan
+        run: trivy image kennygee009/netfix:latest
+      - name: Run the container netflix
+        run: docker run -d -p 8081:81 --name netflix kennygee009/netfix:latest  
          
       
