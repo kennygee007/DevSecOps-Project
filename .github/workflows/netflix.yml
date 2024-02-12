@@ -42,7 +42,7 @@ jobs:
 
   deploy:
     needs: build-analyze-scan
-    runs-on: [aws-netflix]
+    runs-on: [self-hosted]
     steps:
       - name: Pull docker images
         run: docker pull kennygee009/netfix:latest
